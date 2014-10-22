@@ -56,3 +56,27 @@
     colisionado con objetos de cierto tipo, no con todos los objetos.
 
 */
+
+escribe("Clase GameBoard", function(){
+    // Se deberá mostrar una pantalla de inicio o title screen que muestre
+    // el nombre del juego e indicaciones para como comenzar a jugar
+
+    // Estando en la pantalla de inicio, cuando se pulse la tecla
+    // espacio comenzara el juego. No comenzara si la tecla espacio
+    // estaba pulsada. En ese caso, hay que soltarla y pulsar de
+    // nuevo.
+
+
+    var canvas, ctx;
+
+    beforeEach(function(){
+	loadFixtures('index.html');
+
+	canvas = $('#game')[0];
+	expect(canvas).toExist();
+
+	ctx = canvas.getContext('2d');
+	expect(ctx).toBeDefined();
+	
+	oldGame = Game;
+    });
