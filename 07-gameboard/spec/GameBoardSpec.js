@@ -57,7 +57,7 @@
 
 */
 
-escribe("Clase GameBoard", function(){
+describe("Clase GameBoard", function(){
     // Se deberá mostrar una pantalla de inicio o title screen que muestre
     // el nombre del juego e indicaciones para como comenzar a jugar
 
@@ -68,6 +68,7 @@ escribe("Clase GameBoard", function(){
 
 
     var canvas, ctx;
+    var board;
 
     beforeEach(function(){
 	loadFixtures('index.html');
@@ -78,5 +79,9 @@ escribe("Clase GameBoard", function(){
 	ctx = canvas.getContext('2d');
 	expect(ctx).toBeDefined();
 	
-	oldGame = Game;
+	board = new Gameboard();
+	
     });
+
+
+
