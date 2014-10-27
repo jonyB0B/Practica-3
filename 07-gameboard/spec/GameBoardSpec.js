@@ -90,6 +90,24 @@ describe("Clase GameBoard", function(){
 		expect(board.objects[0]).toEqual(undefined);
 	});	
 
+	it ("step",function(){
+		var board = new GameBoard();
+		var dummy = 50;
+		spyOn(board,"iterate");
+		board.step(dummy);
+		expect(board.iterate).toHaveBeenCalled();
+	});
+	
+	it ("draw",function(){
+		var board = new GameBoard();
+		var dummy = 'random'; 
+		spyOn(board,"iterate");
+		board.draw(dummy);
+		expect(board.iterate).toHaveBeenCalled();
+	});
+	
+		
+
  });
 
 
