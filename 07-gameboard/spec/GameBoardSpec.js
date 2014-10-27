@@ -106,8 +106,24 @@ describe("Clase GameBoard", function(){
 		expect(board.iterate).toHaveBeenCalled();
 	});
 	
-		
+	it ("overlap",function(){
+		var board = new	GameBoard();
+		var objeto1 = {x:1,y:1,w:1,h:1};
+		var objeto2 = {x:1,y:1,w:2,h:2};
 
+		expect(board.overlap(objeto1,objeto2)).toBeTruthy();
+	});	
+
+	it ("collide",function(){
+		var board = new	GameBoard();
+		var objeto1 = {x:1,y:1,w:1,h:1};
+		var objeto2 = {x:1,y:1,w:2,h:2};
+		obj1 = board.add(objeto1);
+		obj2 = board.add(objeto2);
+
+		expect(board.collide(obj1)).toBe(obj2);
+	});	
+	
  });
 
 
