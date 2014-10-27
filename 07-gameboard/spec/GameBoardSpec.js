@@ -60,7 +60,6 @@
 describe("Clase GameBoard", function(){
 
     var canvas, ctx;
-    var board;
 
     beforeEach(function(){
 		loadFixtures('index.html');
@@ -71,26 +70,24 @@ describe("Clase GameBoard", function(){
 		ctx = canvas.getContext('2d');
 		expect(ctx).toBeDefined();
 	
-		oldGame = Game;
 	 });
-
-    afterEach(function(){
-        Game = oldGame;
-    });
-
 
     it("añado sprites", function(){
 		var board = new GameBoard();
-		var obj = new PlayerShip();	
-		spyOn(board, "add");
-		obj = board.add(obj);
-		expect(board.objects[0]).toEqual(obj);
+		var obj = "nave";
+		board.add(obj);
+		expect(board.objects[0]).toEqual('nave');
 
     });
       	
     it("elimino sprites",function(){
-		
-	
+		var board = new GameBoard();
+		var obj = "nave";
+		board.add(obj)//añado
+		board.resetRemoved();//inicio la lista de objetos para borrarlos		
+		board.remove(obj);//marco
+		board.finalizeRemoved();//elimino
+		expect(board.objects[0]).toEqual(undefined);
 	});	
 
  });
