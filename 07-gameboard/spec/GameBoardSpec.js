@@ -58,14 +58,6 @@
 */
 
 describe("Clase GameBoard", function(){
-    // Se deberá mostrar una pantalla de inicio o title screen que muestre
-    // el nombre del juego e indicaciones para como comenzar a jugar
-
-    // Estando en la pantalla de inicio, cuando se pulse la tecla
-    // espacio comenzara el juego. No comenzara si la tecla espacio
-    // estaba pulsada. En ese caso, hay que soltarla y pulsar de
-    // nuevo.
-
 
     var canvas, ctx;
     var board;
@@ -79,9 +71,25 @@ describe("Clase GameBoard", function(){
 	ctx = canvas.getContext('2d');
 	expect(ctx).toBeDefined();
 	
-	board = new Gameboard();
+	board = new GameBoard();
 	
     });
+	
+    it("draw", function(){
+	spyOn(ctx, "fillText");
+
+	var titulo = "titulo";
+	var subtitulo = "subtitulo";
+	var ts1 = new TitleScreen(titulo, subtitulo);
+	
+	ts1.draw(ctx);
+	
+ 	expect(ctx.fillText.calls[0].args[0]).toEqual(titulo);
+  	expect(ctx.fillText.calls[1].args[0]).toEqual(subtitulo);
+
+    });
+
+ });
 
 
 
