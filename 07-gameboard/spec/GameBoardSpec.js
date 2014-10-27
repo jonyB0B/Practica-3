@@ -71,23 +71,16 @@ describe("Clase GameBoard", function(){
 	ctx = canvas.getContext('2d');
 	expect(ctx).toBeDefined();
 	
-	board = new GameBoard();
-	
     });
 	
-    it("draw", function(){
-	spyOn(ctx, "fillText");
-
-	var titulo = "titulo";
-	var subtitulo = "subtitulo";
-	var ts1 = new TitleScreen(titulo, subtitulo);
-	
-	ts1.draw(ctx);
-	
- 	expect(ctx.fillText.calls[0].args[0]).toEqual(titulo);
-  	expect(ctx.fillText.calls[1].args[0]).toEqual(subtitulo);
+    it("añado sprites", function(){
+	var obj = new PlayerShip();
+	var board = new GameBoard();
+	board.add(obj);
+	expect(board.objects).toEqual(obj);
 
     });
+      	
 
  });
 
