@@ -63,24 +63,35 @@ describe("Clase GameBoard", function(){
     var board;
 
     beforeEach(function(){
-	loadFixtures('index.html');
+		loadFixtures('index.html');
 
-	canvas = $('#game')[0];
-	expect(canvas).toExist();
+		canvas = $('#game')[0];
+		expect(canvas).toExist();
 
-	ctx = canvas.getContext('2d');
-	expect(ctx).toBeDefined();
+		ctx = canvas.getContext('2d');
+		expect(ctx).toBeDefined();
 	
+		oldGame = Game;
+	 });
+
+    afterEach(function(){
+        Game = oldGame;
     });
-	
+
+
     it("añado sprites", function(){
-	var obj = new PlayerShip();
-	var board = new GameBoard();
-	board.add(obj);
-	expect(board.objects).toEqual(obj);
+		var board = new GameBoard();
+		var obj = new PlayerShip();	
+		spyOn(board, "add");
+		obj = board.add(obj);
+		expect(board.objects[0]).toEqual(obj);
 
     });
       	
+    it("elimino sprites",function(){
+		
+	
+	});	
 
  });
 
