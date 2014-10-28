@@ -214,9 +214,18 @@ var GameBoard = function() {
 
     // Devuelve el primer objeto de objects para el que func es true
     this.detect = function(func) {
-	_.filter(this.objects,function(func){return this.objects});
-		
-    };
+
+//	for(var i = 0,val=null, len=this.objects.length; i < len; i++) {
+	//    if(func.call(this.objects[i])) return this.objects[i];
+	//}
+//	return false;
+
+		if (detecto = _(this.objects).find(function (obj) { return func.call(obj)})){
+			return detecto;
+    	}else{
+    	    return false;
+    	}
+	};
 
     // Cuando Game.loop() llame a step(), hay que llamar al método
     // step() de todos los objetos contenidos en el tablero.  Antes se
