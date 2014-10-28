@@ -27,7 +27,7 @@
     la clase en el prototipo
 
 */
-describe("Clase GameBoard", function(){
+describe("Clase PlayerMissileSpec", function(){
 
     var canvas, ctx;
 

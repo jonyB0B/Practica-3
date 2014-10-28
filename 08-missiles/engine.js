@@ -209,20 +209,17 @@ var GameBoard = function() {
 	// Convertimos en un array args (1..)
 	var args = Array.prototype.slice.call(arguments,1);
 
-	for(var i=0, len=this.objects.length; i<len;i++) {
-	    var obj = this.objects[i];
-	    obj[funcName].apply(obj,args)
-	}
-    };
+	_.each(this.objects,function(obj){obj[funcName].apply(obj,args)});
+	};
 
     // Devuelve el primer objeto de objects para el que func es true
     this.detect = function(func) {
-	for(var i = 0,val=null, len=this.objects.length; i < len; i++) {
-	    if(func.call(this.objects[i])) return this.objects[i];
-	}
-	return false;
-    };
-
+		if (detecto = _(this.objects).find(function (obj) { return func.call(obj)})){
+			return detecto;
+    	}else{
+    	    return false;
+    	}
+	};
     // Cuando Game.loop() llame a step(), hay que llamar al método
     // step() de todos los objetos contenidos en el tablero.  Antes se
     // inicializa la lista de objetos pendientes de borrar, y después
