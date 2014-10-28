@@ -214,6 +214,7 @@ var GameBoard = function() {
 
     // Devuelve el primer objeto de objects para el que func es true
     this.detect = function(func) {
+
 		if (detecto = _(this.objects).find(function (obj) { return func.call(obj)})){
 			return detecto;
     	}else{
