@@ -56,3 +56,82 @@
     colisionado con objetos de cierto tipo, no con todos los objetos.
 
 */
+
+describe("Clase GameBoard", function(){
+
+    var canvas, ctx;
+
+    beforeEach(function(){
+		loadFixtures('index.html');
+
+		canvas = $('#game')[0];
+		expect(canvas).toExist();
+
+		ctx = canvas.getContext('2d');
+		expect(ctx).toBeDefined();
+
+		oldGame = Game;
+		SpriteSheet.load (sprites,function(){});
+	
+	 });
+	
+	 afterEach(function(){
+        Game = oldGame;
+     });
+
+    it("añado sprites", function(){
+		var board = new GameBoard();
+		var obj = new PlayerShip();
+		board.add(obj);
+		expect(board.objects[0]).toEqual(obj);
+
+    });
+      	
+    it("elimino sprites",function(){
+		var board = new GameBoard();
+		var obj = "nave";
+		board.add(obj)//añado
+		board.resetRemoved();//inicio la lista de objetos para borrarlos		
+		board.remove(obj);//marco
+		board.finalizeRemoved();//elimino
+		expect(board.objects[0]).toEqual(undefined);
+	});	
+
+	it ("step",function(){
+		var board = new GameBoard();
+		var dummy = 50;
+		spyOn(board,"iterate");
+		board.step(dummy);
+		expect(board.iterate).toHaveBeenCalled();
+	});
+	
+	it ("draw",function(){
+		var board = new GameBoard();
+		var dummy = 'random'; 
+		spyOn(board,"iterate");
+		board.draw(dummy);
+		expect(board.iterate).toHaveBeenCalled();
+	});
+	
+	it ("overlap",function(){
+		var board = new	GameBoard();
+		var objeto1 = {x:1,y:1,w:1,h:1};
+		var objeto2 = {x:1,y:1,w:2,h:2};
+
+		expect(board.overlap(objeto1,objeto2)).toBeTruthy();
+	});	
+
+	it ("collide",function(){
+		var board = new	GameBoard();
+		var objeto1 = {x:1,y:1,w:1,h:1};
+		var objeto2 = {x:1,y:1,w:2,h:2};
+		obj1 = board.add(objeto1);
+		obj2 = board.add(objeto2);
+
+		expect(board.collide(obj1)).toBe(obj2);
+	});	
+	
+ });
+
+
+

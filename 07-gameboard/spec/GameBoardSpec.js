@@ -69,20 +69,27 @@ describe("Clase GameBoard", function(){
 
 		ctx = canvas.getContext('2d');
 		expect(ctx).toBeDefined();
+
+		oldGame = Game;
+		SpriteSheet.load (sprites,function(){});
 	
 	 });
+	
+	 afterEach(function(){
+        Game = oldGame;
+     });
 
     it("añado sprites", function(){
 		var board = new GameBoard();
-		var obj = "nave";
+		var obj = new PlayerShip();
 		board.add(obj);
-		expect(board.objects[0]).toEqual('nave');
+		expect(board.objects[0]).toEqual(obj);
 
     });
       	
     it("elimino sprites",function(){
 		var board = new GameBoard();
-		var obj = "nave";
+		var obj = new PlayerShip();
 		board.add(obj)//añado
 		board.resetRemoved();//inicio la lista de objetos para borrarlos		
 		board.remove(obj);//marco
