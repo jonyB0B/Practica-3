@@ -27,3 +27,26 @@
     la clase en el prototipo
 
 */
+describe("Clase GameBoard", function(){
+
+    var canvas, ctx;
+
+    beforeEach(function(){
+		loadFixtures('index.html');
+
+		canvas = $('#game')[0];
+		expect(canvas).toExist();
+
+		ctx = canvas.getContext('2d');
+		expect(ctx).toBeDefined();
+	
+	 });
+
+	it ("draw",function(){
+		spyOn(SpriteSheet,"draw");
+		var misil = new PlayerMissile(7,5);
+		misil.draw(ctx)
+		expect(SpriteSheet.draw).toHaveBeenCalled();
+		expect(SpriteSheet.draw.calls[0].args[1]).toEqual("missile");
+	});
+});
