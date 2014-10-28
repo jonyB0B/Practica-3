@@ -136,6 +136,14 @@ describe("Clase PlayerShip", function(){
 	expect(miNave.x).toEqual(Game.width - 37);
 
     });
+	it("espacio pulsado ejer6",function(){
+		var misil3 = new PlayerMissile(5,123);
+		misil3.board = {add:function(){}};
+		spyOn(misil3.board,"add");
+ 		Game.keys['fire'] = true;
+		misil3.step(0.1);
+		expect(misil3.reload).toBe(misil3.reloadTime);
+	});
 
 });
 

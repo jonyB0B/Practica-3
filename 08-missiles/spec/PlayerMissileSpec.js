@@ -72,4 +72,6 @@ describe("Clase PlayerMissileSpec", function(){
 		expect(misil2.board.remove).toHaveBeenCalled();
 
 	});
+	
+
 });
