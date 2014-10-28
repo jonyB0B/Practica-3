@@ -89,7 +89,7 @@ describe("Clase GameBoard", function(){
       	
     it("elimino sprites",function(){
 		var board = new GameBoard();
-		var obj = "nave";
+		var obj = new PlayerShip();
 		board.add(obj)//añado
 		board.resetRemoved();//inicio la lista de objetos para borrarlos		
 		board.remove(obj);//marco
